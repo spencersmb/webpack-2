@@ -1,11 +1,22 @@
-// Common JS of import/export example, relative file ref
-// const sum = require('./sum');
+const button = document.createElement('button');
+button.innerText = "Click me";
 
-//es2015 import
-import sum from './sum/sum';
-import './image_viewer/image_viewer'; //import the file - just run it automatically
+//vanilla html event click
+button.onclick = () => {
 
+  // es2015 function that reaches out to server to try and get this file
+  // async call
+  System.import('./image_viewer/image_viewer')
+    .then( module => {
 
-const total = sum(10, 5);
+      console.log(module);
+      // module.default.init();
 
-console.log(total);
+      const image = new module.default();
+      image.init();
+
+    } );
+
+};
+
+document.body.appendChild(button);

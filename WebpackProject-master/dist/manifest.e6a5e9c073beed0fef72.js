@@ -19,7 +19,12 @@
 /******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
 /******/ 		while(resolves.length)
 /******/ 			resolves.shift()();
-
+/******/ 		if(executeModules) {
+/******/ 			for(i=0; i < executeModules.length; i++) {
+/******/ 				result = __webpack_require__(__webpack_require__.s = executeModules[i]);
+/******/ 			}
+/******/ 		}
+/******/ 		return result;
 /******/ 	};
 
 /******/ 	// The module cache
@@ -27,7 +32,7 @@
 
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		1: 0
+/******/ 		2: 0
 /******/ 	};
 
 /******/ 	// The require function
@@ -75,7 +80,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + chunkId + ".bundle.js";
+/******/ 		script.src = __webpack_require__.p + "" + chunkId + "." + {"0":"6585831d12f34034cd10","1":"c36cc2434f7daab88262"}[chunkId] + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -88,14 +93,12 @@
 /******/ 				installedChunks[chunkId] = undefined;
 /******/ 			}
 /******/ 		};
+/******/ 		head.appendChild(script);
 
 /******/ 		var promise = new Promise(function(resolve, reject) {
 /******/ 			installedChunks[chunkId] = [resolve, reject];
 /******/ 		});
-/******/ 		installedChunks[chunkId][2] = promise;
-
-/******/ 		head.appendChild(script);
-/******/ 		return promise;
+/******/ 		return installedChunks[chunkId][2] = promise;
 /******/ 	};
 
 /******/ 	// expose the modules object (__webpack_modules__)
@@ -131,42 +134,10 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "build/";
+/******/ 	__webpack_require__.p = "";
 
 /******/ 	// on error function for async loading
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
-
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var button = document.createElement('button');
-button.innerText = "Click me";
-
-//vanilla html event click
-button.onclick = function () {
-
-  // es2015 function that reaches out to server to try and get this file
-  // async call
-  __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 0)).then(function (module) {
-
-    console.log(module);
-    // module.default.init();
-
-    var image = new module.default();
-    image.init();
-  });
-};
-
-document.body.appendChild(button);
-
-/***/ })
-/******/ ]);
+/******/ ([]);
